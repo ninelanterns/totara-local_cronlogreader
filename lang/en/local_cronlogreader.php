@@ -6,7 +6,7 @@
 */
 
 $string['generation_fail_existence'] = "File does not exist";
-$string['generation_fail_extension'] = "File extension must be .log";
+$string['generation_fail_extension'] = "File extension must be .log or .gz";
 $string['generation_success'] = "Successfully generated a cron log";
 $string['file_path_text'] = "Path to your cron log file";
 $string['file_path_here'] = "/path/to/your/log/folder";
