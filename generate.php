@@ -24,7 +24,7 @@ $generate = new generate();
 if($mform->is_cancelled()){
     redirect($CFG->wwwroot . '/local/cronlogreader/generate.php', get_string('cancelled_generate_form', 'local_cronlogreader'));
 } else if($fromform = $mform->get_data()){
-    $generate->process_form($fromform, $_SESSION['filepath'], $_SESSION['filename']);
+    $generate->process_form($fromform);
 }
 
 // Set default data

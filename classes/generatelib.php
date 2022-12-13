@@ -9,23 +9,21 @@
 class generate {
 
     /** Process the generate page form
-    * @param string $filepath     
-    * @param string $filename
     * @param object $fromform
     */
 
-    public function process_form(object $fromform, string $filepath, string $filename)
+    public function process_form(object $fromform)
     {
         global $DB, $CFG;
 
-        if(@file_get_contents($filepath . $filename) === false){
+        if(@file_get_contents($fromform->filepath . $fromform->filename) === false){
             redirect($CFG->wwwroot . '/local/cronlogreader/generate.php', get_string('generation_fail_existence', 'local_cronlogreader'));  
         } else {
             $_SESSION['tasktime'] = $fromform->tasktime;
             $_SESSION['filepath'] = $fromform->filepath;
             $_SESSION['filename'] = $fromform->filename;
 
-            $fileExtension = pathinfo($filename, PATHINFO_EXTENSION);
+            $fileExtension = pathinfo($fromform->filename, PATHINFO_EXTENSION);
             if($fileExtension == "gz" || $fileExtension == "log"){   
                 $updatedFileDetails = $this->get_file_details($fromform);  
                 if($DB->record_exists('local_cronlogreader', array('id' => $updatedFileDetails->id))){
