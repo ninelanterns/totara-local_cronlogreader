@@ -1,0 +1,46 @@
+{{!
+    @template local_cronlogreader/reader
+
+    Example context:(json):
+    {
+
+    }
+}}
+<button type="button" class="btn btn-primary" onclick="location.href='{{generateUrl}}'">Back to generation page</button>
+
+<div id="accordion" class="pt-4">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Long tasks ({{longTaskCount}})
+            </button>
+        </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+            {{#tasks}}
+                {{#.}}
+                    <li>{{.}}</li>
+                {{/.}}
+            {{/tasks}}
+        </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                Cron log file ({{errorCount}} total errors)
+            </button>
+        </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+        <div class="card-body">
+            <pre>{{file}}</pre>
+        </div>
+        </div>
+    </div>
+</div>
+
