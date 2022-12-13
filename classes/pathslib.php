@@ -17,13 +17,18 @@ class paths {
 
     public function get_all_directories(string $directory): array
     {
-        // Get all directories with .gz files in them
+        global $CFG;
+
+        $dbname = $CFG->dbname;
+        
         $paths = [];
         $Directory = new RecursiveDirectoryIterator($directory);
         foreach(new RecursiveIteratorIterator($Directory) as $filename => $file){
             if(pathinfo($filename, PATHINFO_EXTENSION) == 'gz' || pathinfo($filename, PATHINFO_EXTENSION) == 'log'){
-                //echo $filename . ' - ' . $file->getSize() . ' bytes <br/>';
-                array_push($paths, $filename);
+                $clientcode = explode("_", $dbname);
+                if(strpos($filename, $clientcode[0]) !== false){
+                    array_push($paths, $filename);
+                } 
             }
         }
         

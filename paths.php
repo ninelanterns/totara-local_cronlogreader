@@ -19,7 +19,7 @@ $directories = new paths();
 
 echo $OUTPUT->header();
 
-$paths = $directories->get_all_directories('/');
+$paths = $directories->get_all_directories('var/log/nginx');
 
 $templatecontext = (object)[
     'paths' => $paths,
